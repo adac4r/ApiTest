@@ -1,0 +1,37 @@
+OBN\Api\CategoryBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\CategoryBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        type:
+            type: object
+        name:
+            type: string
+            length: 255
+        class:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        orderBy:
+            type: integer
+            column: order_by
+        enable:
+            type: boolean
+        color:
+            type: string
+            length: 255
+        categoryMedia:
+            type: object
+        memberCategory:
+            type: object
+    lifecycleCallbacks: {  }

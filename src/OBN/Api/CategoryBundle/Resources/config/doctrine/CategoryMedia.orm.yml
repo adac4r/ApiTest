@@ -1,0 +1,31 @@
+OBN\Api\CategoryBundle\Entity\CategoryMedia:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\CategoryBundle\Repository\CategoryMediaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        createdAt:
+            type: datetime
+        mediaType:
+            type: object
+        pathKey:
+            type: string
+            length: 255
+        identification:
+            type: string
+            length: 255
+        fileExtension:
+            type: string
+            length: 255
+        fileSize:
+            type: integer
+        category:
+            type: object
+    lifecycleCallbacks: {  }

@@ -1,0 +1,35 @@
+OBN\Api\NewsBundle\Entity\News:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\NewsBundle\Repository\NewsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        type:
+            type: object
+        status:
+            type: object
+        title:
+            type: string
+            length: 255
+        content:
+            type: string
+            length: 255
+        publicPath:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+        enabled:
+            type: boolean
+        canBeRated:
+            type: boolean
+        stared:
+            type: boolean
+    lifecycleCallbacks: {  }

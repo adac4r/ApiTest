@@ -1,0 +1,22 @@
+OBN\Api\MemberBundle\Entity\MemberCategory:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\MemberBundle\Repository\MemberCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        visible:
+            type: boolean
+        createdAt:
+            type: datetime
+        uid:
+            type: guid
+        member:
+            type: object
+        category:
+            type: object
+    lifecycleCallbacks: {  }

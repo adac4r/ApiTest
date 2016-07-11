@@ -1,0 +1,3 @@
+obn_api_member_homepage:
+    path:     /
+    defaults: { _controller: OBNApiMemberBundle:Default:index }
