@@ -1,0 +1,31 @@
+OBN\Api\MemberBundle\Entity\Member:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\MemberBundle\Repository\MemberRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        firstname:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        birthdate:
+            type: datetime
+        description:
+            type: string
+            length: 255
+        color:
+            type: string
+            length: 255
+        language:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

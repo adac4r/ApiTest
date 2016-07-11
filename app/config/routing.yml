@@ -1,3 +1,15 @@
+obn_api_news:
+    resource: "@OBNApiNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+obn_api_category:
+    resource: "@OBNApiCategoryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+obn_api_member:
+    resource: "@OBNApiMemberBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

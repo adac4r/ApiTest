@@ -1,0 +1,24 @@
+OBN\Api\NewsBundle\Entity\NewsLink:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\NewsBundle\Repository\NewsLinkRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        url:
+            type: string
+            length: 255
+        author:
+            type: string
+            length: 255
+        news:
+            type: object
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }

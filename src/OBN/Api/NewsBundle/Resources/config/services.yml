@@ -1,0 +1,4 @@
+services:
+#    obn_api_news.example:
+#        class: OBN\Api\NewsBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
