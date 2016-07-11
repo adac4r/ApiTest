@@ -1,0 +1,51 @@
+OBN\Api\NewsBundle\Entity\NewsMedia:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\NewsBundle\Repository\NewsMediaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uid:
+            type: guid
+        pathKey:
+            type: string
+            length: 255
+        mediaType:
+            type: object
+        identification:
+            type: string
+            length: 255
+        fileExtension:
+            type: string
+            length: 255
+        fileSize:
+            type: integer
+            column: FileSize
+        createdAt:
+            type: datetime
+        enabled:
+            type: boolean
+        orderBy:
+            type: integer
+        effect:
+            type: object
+        rotate:
+            type: object
+        isPrimary:
+            type: boolean
+        xPosition:
+            type: object
+        yPosition:
+            type: object
+        mediaMimeType:
+            type: object
+        awsJobId:
+            type: string
+            length: 255
+        news:
+            type: object
+    lifecycleCallbacks: {  }
