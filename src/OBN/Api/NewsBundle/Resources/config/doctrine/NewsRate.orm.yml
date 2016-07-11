@@ -1,0 +1,23 @@
+OBN\Api\NewsBundle\Entity\NewsRate:
+    type: entity
+    table: null
+    repositoryClass: OBN\Api\NewsBundle\Repository\NewsRateRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rate:
+            type: integer
+        dateRate:
+            type: datetime
+            column: date_rate
+        enabled:
+            type: boolean
+        news:
+            type: object
+        category:
+            type: object
+    lifecycleCallbacks: {  }
