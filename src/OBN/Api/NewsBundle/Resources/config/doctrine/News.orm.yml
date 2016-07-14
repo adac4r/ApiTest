@@ -33,3 +33,27 @@ OBN\Api\NewsBundle\Entity\News:
         stared:
             type: boolean
     lifecycleCallbacks: {  }
+    oneToMany:
+        links:
+            targetEntity: OBN\Api\NewsBundle\Entity\NewsLink
+            orphanRemoval: true
+            mappedBy: news
+            cascade: [persist, remove]
+        medias:
+            targetEntity: OBN\Api\NewsBundle\Entity\NewsMedia
+            orphanRemoval: true
+            mappedBy: news
+            cascade: [persist, remove]
+            orderBy:
+                orderBy: ASC
+        rates:
+            targetEntity: OBN\Api\NewsBundle\Entity\NewsRate
+            orphanRemoval: true
+            mappedBy: news
+            cascade: [persist, remove]
+    manyToOne:
+        category:
+            targetEntity: OBN\Api\CategoryBundle\Entity\Category
+        member:
+            targetEntity: OBN\Api\MemberBundle\Entity\Member
+            inversedBy: news

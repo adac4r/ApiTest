@@ -13,11 +13,19 @@ OBN\Api\NewsBundle\Entity\NewsRate:
             type: integer
         dateRate:
             type: datetime
-            column: date_rate
+            column: dateRate
         enabled:
             type: boolean
-        news:
-            type: object
-        category:
-            type: object
+
     lifecycleCallbacks: {  }
+    manyToOne:
+        news:
+            targetEntity: OBN\Api\NewsBundle\Entity\News
+            inversedBy: rates
+        member:
+            targetEntity: OBN\Api\MemberBundle\Entity\Member
+            inversedBy: newsRate
+            joinColumn:
+                nullable: false
+        category:
+            targetEntity: OBN\Api\CategoryBundle\Entity\Category

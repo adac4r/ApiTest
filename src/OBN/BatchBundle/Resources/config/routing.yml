@@ -1,0 +1,4 @@
+obn_batch_homepage:
+    path:     /
+    defaults: { _controller: OBNBatchBundle:Default:index }
+    methods: [GET, POST]

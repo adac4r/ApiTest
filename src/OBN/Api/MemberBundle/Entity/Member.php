@@ -1,16 +1,41 @@
 <?php
 
 namespace OBN\Api\MemberBundle\Entity;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Member
  */
-class Member
+class Member extends BaseUser
 {
+
+    /**
+     * @var integer
+     */
+    private $publishedNews;
+
+    /**
+     * @return int
+     */
+    public function getPublishedNews()
+    {
+        return $this->publishedNews;
+    }
+
+    /**
+     * @param int $publishedNews
+     */
+    public function setPublishedNews($publishedNews)
+    {
+        $this->publishedNews = $publishedNews;
+    }
+    
+    /** Entity start here */
+    
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var guid
@@ -47,6 +72,41 @@ class Member
      */
     private $language;
 
+       /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $news;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $newsRate;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * */
+     private $memberCategory;
+     
+     
+     /**
+      * get MemberCategory
+      * @return MemberCategory
+      * */
+      public function getMember()
+      {
+          return $this->memberCategory;
+      }
+      
+      /**
+       * Set MemberCategory
+       * @param Member $memberCategory
+       * @return MemberCategory
+       * */
+       public function setMember($memberCategory)
+       {
+           $this->memberCategory = $memberCategory;
+           return $this;
+       }
 
     /**
      * Get id

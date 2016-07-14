@@ -1,0 +1,22 @@
+obn_app_homepage:
+    path:     /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|es|fr
+    defaults: { _controller: OBNAppBundle:Default:index, _locale: en }
+
+obn_app_doc:
+    path:     /swagger
+    defaults: { _controller: OBNAppBundle:Default:doc }
+
+obn_app_test:
+    path:     /test
+    defaults: { _controller: OBNAppBundle:Default:test }
+
+obn_app_test_execute:
+    path:     /test_execute
+    defaults: { _controller: OBNAppBundle:Default:testExecute }
+
+obn_app_test_report:
+    path:     /test_report
+    defaults: { _controller: OBNAppBundle:Default:testReport }

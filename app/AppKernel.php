@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new OBN\Api\MemberBundle\OBNApiMemberBundle(),
             new OBN\Api\CategoryBundle\OBNApiCategoryBundle(),
             new OBN\Api\NewsBundle\OBNApiNewsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new OBN\AppBundle\OBNAppBundle(),
+            new OBN\BatchBundle\OBNBatchBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
