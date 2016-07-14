@@ -17,8 +17,10 @@ OBN\Api\NewsBundle\Entity\NewsLink:
         author:
             type: string
             length: 255
-        news:
-            type: object
         enabled:
             type: boolean
     lifecycleCallbacks: {  }
+    manyToOne:
+        news:
+            targetEntity: OBN\Api\NewsBundle\Entity\News
+            inversedBy: links

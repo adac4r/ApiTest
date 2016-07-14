@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+    - { resource: parameters_dev.yml }
 
 framework:
     router:
@@ -14,21 +15,36 @@ web_profiler:
 monolog:
     handlers:
         main:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-            channels: [!event]
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  info
         console:
             type:   console
-            channels: [!event, !doctrine]
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type:   firephp
-        #    level:  info
-        #chromephp:
-        #    type:   chromephp
-        #    level:  info
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: INFO
+                VERBOSITY_VERY_VERBOSE: DEBUG
+            channels: ["!doctrine"]
+        console_very_verbose:
+            type:   console
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: NOTICE
+                VERBOSITY_VERY_VERBOSE: NOTICE
+                VERBOSITY_DEBUG: DEBUG
+            channels: ["doctrine"]
+#        swift:
+#            type:               swift_mailer
+#            from_email:         '%mailer_noreply%'
+#            to_email:           '%mailer_debug%'
+#            subject:            'API DEV - Oooops'
+#            level:              warning
 
-#swiftmailer:
-#    delivery_address: me@example.com
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    disable_delivery:  false
+
+# NelmioCorsBundle
+

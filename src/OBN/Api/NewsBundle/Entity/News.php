@@ -7,6 +7,42 @@ namespace OBN\Api\NewsBundle\Entity;
  */
 class News
 {
+        /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $links;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $medias;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $rates;
+
+    /**
+     * @var \OBN\Api\CategoryBundle\Entity\Category
+     */
+    private $category;
+
+    /**
+     * @var \OBN\Api\MemberBundle\Entity\Member
+     */
+    private $member;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->links = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rates = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    
     /**
      * @var int
      */
@@ -311,6 +347,156 @@ class News
     public function getStared()
     {
         return $this->stared;
+    }
+    
+        /**
+     * Add link
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsLink $link
+     *
+     * @return News
+     */
+    public function addLink(\OBN\Api\NewsBundle\Entity\NewsLink $link)
+    {
+        $this->links[] = $link;
+
+        return $this;
+    }
+
+    /**
+     * Remove link
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsLink $link
+     */
+    public function removeLink(\OBN\Api\NewsBundle\Entity\NewsLink $link)
+    {
+        $this->links->removeElement($link);
+    }
+
+    /**
+     * Get links
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * Add media
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsMedia $media
+     *
+     * @return News
+     */
+    public function addMedia(\OBN\Api\NewsBundle\Entity\NewsMedia $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsMedia $media
+     */
+    public function removeMedia(\OBN\Api\NewsBundle\Entity\NewsMedia $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+    
+        /**
+     * Add rate
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsRate $rate
+     *
+     * @return News
+     */
+    public function addRate(\OBN\Api\NewsBundle\Entity\NewsRate $rate)
+    {
+        $this->rates[] = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Remove rate
+     *
+     * @param \OBN\Api\NewsBundle\Entity\NewsRate $rate
+     */
+    public function removeRate(\OBN\Api\NewsBundle\Entity\NewsRate $rate)
+    {
+        $this->rates->removeElement($rate);
+    }
+
+    /**
+     * Get rates
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRates()
+    {
+        return $this->rates;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \OBN\Api\CategoryBundle\Entity\Category $category
+     *
+     * @return News
+     */
+    public function setCategory(\OBN\Api\CategoryBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \OBN\Api\CategoryBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set member
+     *
+     * @param \OBN\Api\MemberBundle\Entity\Member $member
+     *
+     * @return News
+     */
+    public function setMember(\OBN\Api\MemberBundle\Entity\Member $member = null)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return \OBN\Api\MemberBundle\Entity\Member
+     */
+    public function getMember()
+    {
+        return $this->member;
     }
 }
 

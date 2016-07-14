@@ -2,6 +2,8 @@
 
 namespace OBN\Api\NewsBundle\Entity;
 
+use OBN\Api\NewsBundle\Entity\News;
+
 /**
  * NewsLink
  */
@@ -28,15 +30,38 @@ class NewsLink
     private $author;
 
     /**
-     * @var \stdClass
-     */
-    private $news;
-
-    /**
      * @var bool
      */
     private $enabled;
+    
+     /**
+     * @var \OBN\Api\NewsBundle\Entity\News
+     */
+    private $news;
 
+        /**
+     * Set news
+     *
+     * @param \OBN\Api\NewsBundle\Entity\News $news
+     *
+     * @return NewsLink
+     */
+    public function setNews(\OBN\Api\NewsBundle\Entity\News $news = null)
+    {
+        $this->news = $news;
+
+        return $this;
+    }
+
+    /**
+     * Get news
+     *
+     * @return \OBN\Api\NewsBundle\Entity\News
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
 
     /**
      * Get id
@@ -120,29 +145,6 @@ class NewsLink
         return $this->author;
     }
 
-    /**
-     * Set news
-     *
-     * @param \stdClass $news
-     *
-     * @return NewsLink
-     */
-    public function setNews($news)
-    {
-        $this->news = $news;
-
-        return $this;
-    }
-
-    /**
-     * Get news
-     *
-     * @return \stdClass
-     */
-    public function getNews()
-    {
-        return $this->news;
-    }
 
     /**
      * Set enabled

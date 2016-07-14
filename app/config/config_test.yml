@@ -1,5 +1,47 @@
 imports:
     - { resource: config_dev.yml }
+    - { resource: parameters_test.yml }
+
+monolog:
+    handlers:
+        main:
+            type:               fingers_crossed
+            action_level:       error
+            handler:            grouped
+        grouped:
+            type:               group
+            members:            [streamed, swift]
+        streamed:
+            type:               stream
+            path:               "%kernel.logs_dir%/%kernel.environment%.log"
+            level:              warning
+        swift:
+            type:               swift_mailer
+            from_email:         '%mailer_noreply%'
+            to_email:           '%mailer_debug%'
+            subject:            'API TEST - Oooops'
+            level:              info
+        login:
+            type:               stream
+            path:               "%kernel.logs_dir%/auth.log"
+            level:              info
+            channels:           security
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery:  false
+imports:
+    - { resource: config_dev.yml }
 
 framework:
     test: ~

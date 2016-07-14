@@ -2,20 +2,23 @@
 
 namespace OBN\Api\NewsBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * NewsRate
  */
 class NewsRate
 {
+
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $rate;
+    private $rate = 1;
 
     /**
      * @var \DateTime
@@ -23,17 +26,22 @@ class NewsRate
     private $dateRate;
 
     /**
-     * @var bool
+     * @var boolean
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
-     * @var \stdClass
+     * @var \OBN\Api\NewsBundle\Entity\News
      */
     private $news;
 
     /**
-     * @var \stdClass
+     * @var \OBN\Api\MemberBundle\Entity\Member
+     */
+    private $member;
+
+    /**
+     * @var \OBN\Api\CategoryBundle\Entity\Category
      */
     private $category;
 
@@ -41,7 +49,7 @@ class NewsRate
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -52,7 +60,6 @@ class NewsRate
      * Set rate
      *
      * @param integer $rate
-     *
      * @return NewsRate
      */
     public function setRate($rate)
@@ -65,42 +72,44 @@ class NewsRate
     /**
      * Get rate
      *
-     * @return int
+     * @return integer
      */
     public function getRate()
     {
-        return $this->rate;
+        $sumRates = 0;
+        foreach ($this->rate as $rate) {
+            $sumRates += $rate;
+        }
+        return $sumRates;
     }
 
     /**
-     * Set dateRate
+     * Set date_rate
      *
      * @param \DateTime $dateRate
-     *
      * @return NewsRate
      */
     public function setDateRate($dateRate)
     {
-        $this->dateRate = $dateRate;
+        $this->date_rate = $dateRate;
 
         return $this;
     }
 
     /**
-     * Get dateRate
+     * Get date_rate
      *
      * @return \DateTime
      */
     public function getDateRate()
     {
-        return $this->dateRate;
+        return $this->date_rate;
     }
 
     /**
      * Set enabled
      *
      * @param boolean $enabled
-     *
      * @return NewsRate
      */
     public function setEnabled($enabled)
@@ -113,7 +122,7 @@ class NewsRate
     /**
      * Get enabled
      *
-     * @return bool
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -123,11 +132,10 @@ class NewsRate
     /**
      * Set news
      *
-     * @param \stdClass $news
-     *
+     * @param \OBN\Api\NewsBundle\Entity\News $news
      * @return NewsRate
      */
-    public function setNews($news)
+    public function setNews(\OBN\Api\NewsBundle\Entity\News $news = null)
     {
         $this->news = $news;
 
@@ -137,7 +145,7 @@ class NewsRate
     /**
      * Get news
      *
-     * @return \stdClass
+     * @return \OBN\Api\NewsBundle\Entity\News
      */
     public function getNews()
     {
@@ -145,27 +153,44 @@ class NewsRate
     }
 
     /**
-     * Set category
+     * Set member
      *
-     * @param \stdClass $category
-     *
+     * @param \OBN\Api\MemberBundle\Entity\Member $member
      * @return NewsRate
      */
-    public function setCategory($category)
+    public function setMember(\OBN\Api\MemberBundle\Entity\Member $member)
     {
-        $this->category = $category;
+        $this->member = $member;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get member
      *
-     * @return \stdClass
+     * @return \OBN\Api\MemberBundle\Entity\Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @return \OBN\Api\CategoryBundle\Entity\Category
      */
     public function getCategory()
     {
         return $this->category;
     }
-}
 
+    /**
+     * @param \OBN\Api\CategoryBundle\Entity\Category $category
+     * @return NewsRate
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+}

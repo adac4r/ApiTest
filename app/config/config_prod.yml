@@ -1,21 +1,53 @@
 imports:
     - { resource: config.yml }
-
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+    - { resource: parameters_prod.yml }
 
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
-        nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-        console:
-            type:  console
+            type:               fingers_crossed
+            action_level:       error
+            handler:            grouped
+        grouped:
+            type:               group
+            members:            [streamed, swift]
+        streamed:
+            type:               stream
+            path:               "%kernel.logs_dir%/%kernel.environment%.log"
+            level:              warning
+        swift:
+            type:               swift_mailer
+            from_email:         '%mailer_noreply%'
+            to_email:           '%mailer_debug%'
+            subject:            'API PROD - Oooops'
+            level:              info
+        login:
+            type:               stream
+            path:               "%kernel.logs_dir%/auth.log"
+            level:              info
+            channels:           security
+
+# FOSRestBundle Configuration
+fos_rest:
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+
+# NelmioCorsBundle
+nelmio_cors:
+    paths:
+        '^/api':
+            allow_origin: ['https://www.onlybeautifulnews.com']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'PATCH', 'LINK']
+            allow_credentials: true
+            max_age: 86400
+        '^/batch':
+            allow_origin: ['https://www.onlybeautifulnews.com']
+            allow_headers: ['*']
+            allow_methods: ['POST']
+            allow_credentials: true
+            max_age: 86400

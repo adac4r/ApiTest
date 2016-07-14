@@ -2,6 +2,9 @@ OBN\Api\NewsBundle\Entity\NewsMedia:
     type: entity
     table: null
     repositoryClass: OBN\Api\NewsBundle\Repository\NewsMediaRepository
+    entityListeners:
+          OBN\Api\NewsBundle\EntityListener\NewsMediaListener:
+            preRemove: [ preRemove ]
     id:
         id:
             type: integer
@@ -15,13 +18,15 @@ OBN\Api\NewsBundle\Entity\NewsMedia:
             type: string
             length: 255
         mediaType:
-            type: object
+            type: MediaType
+            nullable: true
         identification:
             type: string
             length: 255
         fileExtension:
             type: string
-            length: 255
+            length: 4
+            column: file_extention
         fileSize:
             type: integer
             column: FileSize
@@ -32,20 +37,35 @@ OBN\Api\NewsBundle\Entity\NewsMedia:
         orderBy:
             type: integer
         effect:
-            type: object
+            type: MediaEffect
+            nullable: true
         rotate:
-            type: object
+            type: MediaRotation
+            options:
+                default: 0
         isPrimary:
             type: boolean
         xPosition:
-            type: object
+            type: MediaXposition
+            nullable: true
+            options:
+                default: 'center'
         yPosition:
-            type: object
+            type: MediaYposition
+            nullable: true
+            options:
+                default: 'center'
         mediaMimeType:
-            type: object
+            type: MediaMimeType
+            nullable: true
+        mediaProvider:
+            type: MediaProvider
+            nullable: true
         awsJobId:
             type: string
             length: 255
-        news:
-            type: object
     lifecycleCallbacks: {  }
+    manyToOne:
+        news:
+            targetEntity: OBN\Api\NewsBundle\Entity\News
+            inversedBy: medias

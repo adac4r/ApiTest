@@ -2,11 +2,26 @@
 
 namespace OBN\Api\NewsBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Gregwar\Image\Image;
+use OBN\AppBundle\Dbal\Types\MediaEffect;
+use OBN\AppBundle\Dbal\Types\MediaMimeType;
+use OBN\AppBundle\Dbal\Types\MediaProvider;
+use OBN\AppBundle\Dbal\Types\MediaRotation;
+use OBN\AppBundle\Dbal\Types\MediaType;
+use OBN\AppBundle\Dbal\Types\MediaXposition;
+use OBN\AppBundle\Dbal\Types\MediaYposition;
+use OBN\AppBundle\Helper\MediaHelper;
+use OBN\AppBundle\Helper\MediaVideoProvider;
+use OBN\AppBundle\Model\Guid;
+
 /**
  * NewsMedia
  */
 class NewsMedia
 {
+    
+    
     /**
      * @var int
      */
@@ -23,7 +38,7 @@ class NewsMedia
     private $pathKey;
 
     /**
-     * @var \stdClass
+     * @var MediaType
      */
     private $mediaType;
 
@@ -58,12 +73,12 @@ class NewsMedia
     private $orderBy;
 
     /**
-     * @var \stdClass
+     * @var MediaEffect
      */
     private $effect;
 
     /**
-     * @var \stdClass
+     * @var MediaRotation
      */
     private $rotate;
 
@@ -73,19 +88,24 @@ class NewsMedia
     private $isPrimary;
 
     /**
-     * @var \stdClass
+     * @var MediaXposition
      */
     private $xPosition;
 
     /**
-     * @var \stdClass
+     * @var MediaYposition
      */
     private $yPosition;
 
     /**
-     * @var \stdClass
+     * @var MediaMimeType
      */
     private $mediaMimeType;
+    
+    /**
+     * @var MediaProvider
+     */
+    private $mediaProvider;
 
     /**
      * @var string
@@ -93,7 +113,7 @@ class NewsMedia
     private $awsJobId;
 
     /**
-     * @var \stdClass
+     * @var \OBN\Api\NewsBundle\Entity\News
      */
     private $news;
 
@@ -159,7 +179,7 @@ class NewsMedia
     /**
      * Set mediaType
      *
-     * @param \stdClass $mediaType
+     * @param MediaType $mediaType
      *
      * @return NewsMedia
      */
@@ -173,11 +193,36 @@ class NewsMedia
     /**
      * Get mediaType
      *
-     * @return \stdClass
+     * @return MediaType
      */
     public function getMediaType()
     {
         return $this->mediaType;
+    }
+
+
+    /**
+     * Set mediaProvider
+     *
+     * @param MediaProvider $mediaProvider
+     *
+     * @return NewsMedia
+     */
+    public function setMediaProvider($mediaProvider)
+    {
+        $this->mediaProvider = $mediaProvider;
+
+        return $this;
+    }
+
+    /**
+     * Get mediaProvider
+     *
+     * @return MediaProvider
+     */
+    public function getMediaProvider()
+    {
+        return $this->mediaProvider;
     }
 
     /**
@@ -324,10 +369,11 @@ class NewsMedia
         return $this->orderBy;
     }
 
+
     /**
      * Set effect
      *
-     * @param \stdClass $effect
+     * @param MediaEffect $effect
      *
      * @return NewsMedia
      */
@@ -341,17 +387,18 @@ class NewsMedia
     /**
      * Get effect
      *
-     * @return \stdClass
+     * @return MediaEffect
      */
     public function getEffect()
     {
         return $this->effect;
     }
 
+
     /**
      * Set rotate
      *
-     * @param \stdClass $rotate
+     * @param MediaRotation $rotate
      *
      * @return NewsMedia
      */
@@ -365,7 +412,7 @@ class NewsMedia
     /**
      * Get rotate
      *
-     * @return \stdClass
+     * @return MediaRotation
      */
     public function getRotate()
     {
@@ -399,7 +446,7 @@ class NewsMedia
     /**
      * Set xPosition
      *
-     * @param \stdClass $xPosition
+     * @param MediaXposition $xPosition
      *
      * @return NewsMedia
      */
@@ -413,7 +460,7 @@ class NewsMedia
     /**
      * Get xPosition
      *
-     * @return \stdClass
+     * @return MediaXposition
      */
     public function getXPosition()
     {
@@ -423,7 +470,7 @@ class NewsMedia
     /**
      * Set yPosition
      *
-     * @param \stdClass $yPosition
+     * @param MediaYposition $yPosition
      *
      * @return NewsMedia
      */
@@ -437,7 +484,7 @@ class NewsMedia
     /**
      * Get yPosition
      *
-     * @return \stdClass
+     * @return MediaYposition
      */
     public function getYPosition()
     {
@@ -447,7 +494,7 @@ class NewsMedia
     /**
      * Set mediaMimeType
      *
-     * @param \stdClass $mediaMimeType
+     * @param MediaMimeType $mediaMimeType
      *
      * @return NewsMedia
      */
@@ -461,7 +508,7 @@ class NewsMedia
     /**
      * Get mediaMimeType
      *
-     * @return \stdClass
+     * @return MediaMimeType
      */
     public function getMediaMimeType()
     {
@@ -495,11 +542,11 @@ class NewsMedia
     /**
      * Set news
      *
-     * @param \stdClass $news
+     * @param \OBN\Api\NewsBundle\Entity\News $news
      *
      * @return NewsMedia
      */
-    public function setNews($news)
+    public function setNews(\OBN\Api\NewsBundle\Entity\News $news = null)
     {
         $this->news = $news;
 
@@ -509,7 +556,7 @@ class NewsMedia
     /**
      * Get news
      *
-     * @return \stdClass
+     * @return \OBN\Api\NewsBundle\Entity\News
      */
     public function getNews()
     {

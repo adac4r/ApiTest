@@ -1,0 +1,15 @@
+
+api_news:
+  type: rest
+  resource: "@OBNApiNewsBundle/Resources/config/routing.yml"
+  prefix: /news
+
+api_category:
+  type: rest
+  resource: "@OBNApiCategoryBundle/Resources/config/routing.yml"
+  prefix: /category
+
+api_member:
+  type: rest
+  resource: "@OBNApiMemberBundle/Resources/config/routing.yml"
+  prefix: /member

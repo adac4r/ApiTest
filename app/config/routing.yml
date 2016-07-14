@@ -1,15 +1,46 @@
-obn_api_news:
-    resource: "@OBNApiNewsBundle/Resources/config/routing.yml"
-    prefix:   /
 
-obn_api_category:
-    resource: "@OBNApiCategoryBundle/Resources/config/routing.yml"
-    prefix:   /
+# BATCH BUNDLE
+obn_batch:
+    resource: "@OBNBatchBundle/Resources/config/routing.yml"
+    prefix:   /batch
 
-obn_api_member:
-    resource: "@OBNApiMemberBundle/Resources/config/routing.yml"
-    prefix:   /
+# APP BUNDLE
+obn_app:
+    resource: "@OBNAppBundle/Resources/config/routing.yml"
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+# REST API
+rest_api: 
+  type : rest 
+  resource : "routing_api.yml"
+  prefix:   /api
+
+# DOC API 
+doc_api:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/doc
+    requirements:
+        _locale: en|es|fr
+
+nelmio_api_swagger:
+    resource: "@NelmioApiDocBundle/Resources/config/swagger_routing.yml"
+    prefix: /swagger-docs
+        
+# FOS USER
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /{_locale}/
+    requirements:
+        _locale: en|es|fr
+        
+# FOS OAUTH
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+    prefix:   /{_locale}/
+    requirements:
+        _locale: en|es|fr
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+    prefix:   /{_locale}/
+    requirements:
+        _locale: en|es|fr

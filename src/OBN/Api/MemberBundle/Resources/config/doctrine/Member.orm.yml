@@ -1,6 +1,6 @@
 OBN\Api\MemberBundle\Entity\Member:
     type: entity
-    table: null
+    table: fos_user
     repositoryClass: OBN\Api\MemberBundle\Repository\MemberRepository
     id:
         id:
@@ -29,3 +29,17 @@ OBN\Api\MemberBundle\Entity\Member:
             type: string
             length: 255
     lifecycleCallbacks: {  }
+    oneToMany:
+        news:
+            targetEntity: OBN\Api\NewsBundle\Entity\News
+            orphanRemoval: false
+            mappedBy: member
+            cascade: [persist]
+        newsRate:
+            targetEntity: OBN\Api\NewsBundle\Entity\NewsRate
+            orphanRemoval: true
+            mappedBy: member
+            cascade: [persist, remove]
+        memberCategory:
+            targetEntity: OBN\Api\MemberBundle\Entity\MemberCategory
+            mappedBy: member
